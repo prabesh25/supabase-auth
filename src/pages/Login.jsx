@@ -4,22 +4,28 @@ import { supabase } from "../client";
 import { Link, useNavigate } from "react-router-dom";
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 
+// settoken vanne prop accept 
 function Login({ setToken }) {
+  // user lai loginin pachi archo page ma navigate hai
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
 
+  // user input ma update garna ko lagi
+  // jun ma type hudai cha tei matara update huncha.
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // supabase sanga given name ra pass le login garauna    
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: formData.email,
         password: formData.password,
       });
       if (error) throw error;
+      //settoken ko through bata user info lai save garna
       setToken(data);
       navigate("/homepage");
     } catch (err) {
