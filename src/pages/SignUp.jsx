@@ -2,24 +2,31 @@
 
 
 import { useState } from "react";
+//user data supabase bata lina ko lagi ra signup garauna ko lagi
 import { supabase } from "../client";
 import { Link, useNavigate } from "react-router-dom";
 import { UserIcon, EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 
 function SignUp() {
+  //signup pachi archo route ma move huna ko lagi
   const navigate = useNavigate();
+  //set form data ko kam user le type gardha you 3 tai update garnu ho
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: "",
   });
 
+  // input hudha value update garaunu ho
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // email ra pass supabase lai send garna ko lagi
+    //user lai signup garauna ko lagi.
+    // full-name lai extar data jasari store garna. 
     try {
       const { error } = await supabase.auth.signUp({
         email: formData.email,
