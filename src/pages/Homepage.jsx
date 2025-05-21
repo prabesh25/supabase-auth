@@ -7,12 +7,16 @@ import { supabase } from "../client";
 import { useNavigate } from "react-router-dom";
 import { SparklesIcon, CakeIcon, GiftIcon } from "@heroicons/react/24/solid";
 
+
+// token prop accept garya for checking 
 const Homepage = ({ token }) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     // sessionStorage.removeItem('token')
+    // builtin signout method vai halyo 
     await supabase.auth.signOut();
+    // logpout pachi user lai home page ma redirect garna ko lagi
     navigate("/");
   };
 
